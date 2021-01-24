@@ -1,19 +1,28 @@
 package leo.com.cursomc.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class Categorie implements Serializable {
+@Entity
+public class Category implements Serializable {
 
     private static final long serialVersionUID = 1L;
+
+    @Id
+    @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
     private String nome;
 
-    public Categorie(){
+    public Category(){
 
     }
 
-    public Categorie(Integer id, String nome) {
+    public Category(Integer id, String nome) {
+        super();
         this.id = id;
         this.nome = nome;
     }
@@ -38,8 +47,8 @@ public class Categorie implements Serializable {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Categorie categorie = (Categorie) o;
-        return id.equals(categorie.id);
+        Category category = (Category) o;
+        return id.equals(category.id);
     }
 
     @Override
