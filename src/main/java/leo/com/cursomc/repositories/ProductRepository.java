@@ -1,10 +1,10 @@
 package leo.com.cursomc.repositories;
 
-import leo.com.cursomc.domain.Category;
+import leo.com.cursomc.domain.Product;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface CategoryRepository extends JpaRepository<Category, Integer> {
+public interface ProductRepository extends JpaRepository<Product, Integer> {
 
 }

@@ -7,33 +7,27 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
-public class Category implements Serializable {
+public class Product implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private Integer id;
-    private String nome;
+    private String  nome;
+    private Double preco;
 
-    @ManyToMany(mappedBy="categories")
-    private List<Product> products = new ArrayList<>();
+    @ManyToMany
+    @JoinTable(name = "PRODUCT_CATEGORY",
+    joinColumns = @JoinColumn(name = "product_id"),
+    inverseJoinColumns = @JoinColumn(name = "category_id"))
+    private List<Category> categories = new ArrayList<>();
 
-    public Category(){
+    public Product() {}
 
-    }
-
-    public Category(Integer id, String nome) {
-        super();
+    public Product(Integer id, String nome, Double preco) {
         this.id = id;
         this.nome = nome;
-    }
-
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void setProducts(List<Product> products) {
-        this.products = products;
+        this.preco = preco;
     }
 
     public Integer getId() {
@@ -52,12 +46,28 @@ public class Category implements Serializable {
         this.nome = nome;
     }
 
+    public Double getPreco() {
+        return preco;
+    }
+
+    public void setPreco(Double preco) {
+        this.preco = preco;
+    }
+
+    public List<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<Category> categories) {
+        this.categories = categories;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Category category = (Category) o;
-        return id.equals(category.id);
+        Product product = (Product) o;
+        return id.equals(product.id);
     }
 
     @Override
