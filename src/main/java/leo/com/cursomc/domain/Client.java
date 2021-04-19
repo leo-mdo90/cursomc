@@ -1,5 +1,6 @@
 package leo.com.cursomc.domain;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import leo.com.cursomc.domain.enums.ClientType;
 
 import javax.persistence.*;
@@ -18,6 +19,7 @@ public class Client implements Serializable {
     private String cpfOrCnpj;
     private Integer type;
 
+    @JsonManagedReference
     @OneToMany(mappedBy = "client")
     private List<Address> address = new ArrayList<>();
 
